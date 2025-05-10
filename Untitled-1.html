@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloomHydrate 🌿💧</title>
+    <link rel="stylesheet" href="styles2.css">
+    <style>
+        /* Additional CSS for new features */
+        #header, #footer, #hero, #features, #filters {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #plantList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        
+            .plant {
+    border: 2px solid #4CAF50; /* Green border */
+    padding: 15px;
+    width: 180px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Alternate background colors for different plants */
+.plant:nth-child(1) {
+    background-color: #a1dda2; /* Light Green */
+}.plant:nth-child(3) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(5) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(7) {
+    background-color: #a1dda2; /* Light Green */
+}
+
+.plant:nth-child(9) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(11) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(13) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(15) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(17) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(19) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(21) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(23) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(25) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(27) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(29) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(31) {
+    background-color: #a1dda2; /* Light Green */
+}
+.plant:nth-child(33) {
+    background-color: #a1dda2; /* Light Green */
+}
+
+
+
+
+
+.plant:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+        }
+      
+       .feature img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .navbar input {
+            padding: 8px;
+            width: 200px;
+        }
+
+        /* Style the navigation links */
+        #header nav h2 {
+            margin: 0;
+            padding: 0;
+        }
+
+        #header nav a {
+            color: white; /* Set navigation text color to white */
+            text-decoration: none; /* Remove underline */
+            margin: 0 10px; /* Space out the links */
+            font-weight: bold; /* Make the text bold */
+        }
+
+        #header nav a:hover {
+            text-decoration: underline; /* Underline the link on hover */
+        }
+
+        /* Styling for navigation inside header */
+        #header nav {
+            margin-top: 20px;
+        }
+
+        /* Updated style for navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent; /* Set background to transparent */
+            padding: 10px 20px;
+        }
+
+        /* Updated header app-name text to white */
+        .app-name {
+            color: white; /* Change app name to white */
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Styling for the header */
+        #header {
+            background-color: #4CAF50; /* Green background for header */
+            padding: 20px 0;
+        }
+
+        /* Style for the main content */
+        main {
+            padding: 20px;
+        }
+
+        /* Footer Styles */
+        #footer {
+            background-color: #4CAF50; /* Green background for footer */
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="navbar">
+            <div class="app-name">BloomHydrate 🌿💧</div>
+            <input type="text" placeholder="Search plants..." id="searchBar" oninput="searchPlants()">
+        </div>
+
+        <!-- Navigation for sections -->
+        <nav>
+            <h2>
+                <a href="C:\Users\jyosh\OneDrive\Desktop\plant\pp\home.html" onclick="showSection('Home')">Home</a> |
+                <a href="C:\Users\jyosh\OneDrive\Desktop\plant\pp\about.html" onclick="showSection('about')">About</a> |
+                <a href="C:\Users\jyosh\OneDrive\Desktop\plant\pp\plant care.html" onclick="showSection('plant care')">Plant Care</a> |
+                <a href="C:\Users\jyosh\OneDrive\Desktop\plant\pp\one.html" onclick="showSection('plant doctor')">Plant Doctor</a> |
+                <a href="C:/Users/jyosh/OneDrive/Desktop/plant/pp/time%20to%20water.html" onclick="showSection('time to water')">Time to Water</a>
+            </h2>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <h1>Welcome to BloomHydrate 🌿💧</h1>
+            <p>Keep your plants healthy and hydrated</p>
+        </section>
+
+        <!-- Plant Filters -->
+        <section id="filters">
+            <label for="lightRequirement"> Sun Light Requirement:</label>
+            <select id="lightRequirement" onchange="filterPlants()">
+                <option value="all">All</option>
+                <option value="low">Low Light</option>
+                <option value="medium">Medium Light</option>
+                <option value="high">High Light</option>
+            </select>
+        </section>
+
+        <!-- Plant List Section -->
+        <section id="plantList">
+            <!-- Plant items will be populated here dynamically -->
+        </section>
+
+        <!-- Features Section (Placeholder) -->
+        <section id="features">
+            <!-- Feature details will be placed here -->
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+       
+        <div id="socialMedia">
+            <a href="https://www.instagram.com/BloomHydrateApp">Follow Us on Instagram</a> |
+            <a href="https://www.facebook.com/BloomHydrateApp">Facebook</a> |
+            <a href="https://twitter.com/BloomHydrateApp">Twitter</a>
+        </div>
+    </footer>
+
+    <!-- Scripts Section -->
+    <script src="script.js"></script>
+    <script>
+        // Dummy Plant Data
+        const plants = [
+            { name: "Aloe Vera", light: "low" },
+            { name: "Spider Plant", light: "medium" },
+            { name: "Cactus", light: "high" },
+            { name: "Ficus", light: "medium" },
+            { name: "Succulent", light: "high" },
+            { name: "Pothos", light: "low" },
+            { name: "Snake plant", light: "low" },
+            { name: "ZZ Plant (Zamioculcas zamiifolia)", light: "medium" },
+            { name: "Cast Iron Plant (Aspidistra elatior)", light: "low" },
+            { name: "Chinese Evergreen (Aglaonema)", light: "low" },
+            { name: "Dracaena", light: "low" },
+            { name: "Fiddle Leaf Fig (Ficus lyrata)", light: "high" },
+            { name: "Bamboo Palm (Chamaedorea seifrizii)", light: "high" },
+            { name: "Pilea (Pilea peperomioides)", light: "high" },
+            { name: "String of Pearls ", light: "high" },
+            { name: "Rubber plant(Ficus elastica) ", light: "high" },
+            { name: "Basil", light: "high" },
+            { name: "Cilantro", light: "medium" },
+            { name: "Rosemary", light: "high" },
+            { name: "Thyme", light: "high" },
+            { name: "Oregano", light: "high" },
+            { name: "Mint", light: "medium" },
+            { name: "Tamatoes", light: "high" },
+            { name: "Peppers", light: "high" },
+            { name: "Carrots", light: "high" },
+            { name: "Lettuce", light: "medium" },
+            { name: "Spinach", light: "medium" },
+            { name: "Cucumbers", light: "high" },
+            { name: "Radishes", light: "medium" },
+            { name: "Marigolds", light: "high" },
+            { name: "Roses", light: "high" },
+            { name: "Jasmine", light: "high" },
+            { name: "Hibiscus", light: "high" },
+            
+            
+        ];
+
+        // Function to display the plants
+        function displayPlants(plantList) {
+            const plantContainer = document.getElementById("plantList");
+            plantContainer.innerHTML = '';
+            plantList.forEach(plant => {
+                const plantElement = document.createElement('div');
+                plantElement.className = 'plant';
+                plantElement.innerHTML = `<h3>${plant.name}</h3><p>Light: ${plant.light}</p>`;
+                plantContainer.appendChild(plantElement);
+            });
+        }
+        
+        // Search function
+        function searchPlants() {
+            const searchQuery = document.getElementById("searchBar").value.toLowerCase();
+            const filteredPlants = plants.filter(plant => plant.name.toLowerCase().includes(searchQuery));
+            displayPlants(filteredPlants);
+        }
+
+        // Lighting filter function
+        function filterPlants() {
+            const lightFilter = document.getElementById("lightRequirement").value;
+            const filteredPlants = plants.filter(plant => lightFilter === "all" || plant.light === lightFilter);
+            displayPlants(filteredPlants);
+        }
+
+        // On page load, display all plants
+        displayPlants(plants);
+    </script>
+</body>
+</html>
