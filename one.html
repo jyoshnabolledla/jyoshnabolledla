@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection🌿🔍</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('C:/Users/jyosh/OneDrive/Pictures/Screenshots/Screenshot 2025-03-14 202605.png') no-repeat center center/cover;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .flip-container {
+            width: 100%;
+            max-width: 500px;
+            height: 420px;
+            margin: auto;
+            perspective: 1000px;
+         
+        }
+        .flipper {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            border: 4px solid #4CAF50; /* Full green border */
+        }
+        .front {
+            z-index: 2;
+        }
+        .back {
+            transform: rotateY(180deg);
+        }
+        input, button, textarea {
+            width: 90%;
+            margin: 10px 0 ;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+           
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result, #imageResult {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">Plant Disease Detection🌿🔍</h2>
+
+    <div class="flip-container" ondblclick="flipPage()">
+        <div class="flipper" id="flipper">
+
+            <!-- Page 1: Symptom Input -->
+            <div class="page front">
+                <h3>Enter Symptoms</h3>
+                <textarea id="symptoms" placeholder="Describe plant symptoms..."></textarea>
+                <button onclick="analyzeSymptoms()">Analyze</button>
+                <div id="result"></div>
+                <p><small>Double tap anywhere to upload an image instead.</small></p>
+            </div>
+
+            <!-- Page 2: Image Upload -->
+            <div class="page back">
+                <h3>Upload Leaf Image</h3>
+                <input type="file" id="imageUpload" accept="image/*">
+                <button onclick="analyzeImage()">Detect Disease</button>
+                <div id="imageResult"></div>
+                <p><small>Double tap to go back to symptoms.</small></p>
+            </div>
+
+        </div>
+    </div>
+
+  
+<script>
+     function flipPage() {
+            document.getElementById("flipper").classList.toggle("flipped");
+        }
+    function analyzeSymptoms() {
+        let symptoms = document.getElementById("symptoms").value.toLowerCase();
+        let resultDiv = document.getElementById("result");
+        let result = ""; // Store results
+
+        if (symptoms.includes("yellow leaves") || symptoms.includes("spots")) {
+            result += "⚠ Possible Disease: Leaf Spot<br>💡 Cure: Use fungicide & remove infected leaves.<br><br>";
+        }
+        if (symptoms.includes("dry") || symptoms.includes("wilt") || symptoms.includes("droop")) {
+            result += "⚠ Possible Disease: Wilt Disease<br>💡 Cure: Improve soil drainage & avoid overwatering.<br><br>";
+        }
+        if (symptoms.includes("dry leaves")) {
+            result += "⚠ Possible Disease: Dehydration<br>💡 Cure: Water consistently, improve soil retention and moisture.<br><br>";
+        }
+        if (symptoms.includes("Orange, red, or brown pustules on underside of leaves.")) {
+            result += "⚠ Possible Disease:Rust <br>💡 Cure:Prune affected leaves,Increase sunlight exposure,Spray with sulfur-based fungicides.<br><br>";
+        }
+        if (symptoms.includes("White powder on leaves/stems")) {
+            result += "⚠ Possible Disease:Powdery Mildew<br>💡 Cure:Prune, increase airflow, spray with baking soda/neem oil.<br><br>";
+        }
+        if (symptoms.includes("Water-soaked spots, leaf yellowings")) {
+            result += "⚠ Possible Disease:Bacterial Leaf Spot<br>💡 Cure:Prune infected areas, avoid wet leaves, copper spray.<br><br>";
+        }
+        if (symptoms.includes("Wilting,stunted growth,yellowing leaves")) {
+            result += "⚠ Possible Disease:Root rot<br>💡 Cure:Trim rotten roots, replant in dry soil, reduce watering..<br><br>";
+        }
+
+        // If no disease is detected
+        if (result === "") {
+            result = "✅ Healthy Plant or Disease Unknown.";
+        }
+
+        resultDiv.innerHTML = result;
+
+    }
+    function analyzeImage() {
+    let imageFile = document.getElementById("imageUpload").files[0];
+    let imageResultDiv = document.getElementById("imageResult");
+
+    if (imageFile) {
+        // Simulate disease detection by randomly selecting from a list
+        const diseases = [
+            { name: "Leaf Spot", cure: "Use fungicide & remove infected leaves." },
+            { name: "Wilt Disease", cure: "Improve soil drainage & avoid overwatering." },
+            { name: "Powdery Mildew", cure: "Prune, increase airflow, spray with baking soda/neem oil." },
+            { name: "Rust", cure: "Prune affected leaves, increase sunlight, use sulfur fungicide." },
+            { name: "Bacterial Leaf Spot", cure: "Prune infected areas, avoid wet leaves, copper spray." },
+            { name: "Root Rot", cure: "Trim rotten roots, replant in dry soil, reduce watering." },
+            { name: "Blight", cure: "Remove affected areas, avoid overhead watering, copper fungicide." },
+            { name: "Downy Mildew", cure: "Remove infected leaves, improve airflow, apply copper spray." }
+        ];
+
+        const randomIndex = Math.floor(Math.random() * diseases.length);
+        const selected = diseases[randomIndex];
+
+        imageResultDiv.innerHTML = `⚠ Detected Disease: ${selected.name}<br>💡 Cure: ${selected.cure}`;
+    } else {
+        imageResultDiv.innerHTML = "❌ No image uploaded.";
+    }
+}
+
+</script>
+</body>
+</html>
